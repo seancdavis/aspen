@@ -1,0 +1,605 @@
+/*
+Theme Name: Aspen
+Theme URI: http://thepolymathlab.com
+Description: A basic theme with widgets and plugins to make your site bright, cheerful and professional.
+Author: rocktree Design
+Author URI: http://thepolymathlab.com
+Version: 1.0
+Tags: responsive, right sidebar, widgets, home widgets, feature slider, custom header, custom menu
+Release Date: 1/14/13
+
+
+TABLE OF CONTENTS
+---------------------------------------
+=Globals
+=General Layout
+=Content
+=Header
+=Main Menu
+=Widgets
+=Footer
+=Footer Menu
+=Responsive Design
+
+
+/* --------------------------------------
+	=Globals 
+---------------------------------------*/
+* {
+	padding: 0;
+	margin: 0;
+	line-height: 1em;
+}
+
+body {
+	font-family: Tahoma, Geneva, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	color: #404040;
+}
+
+h1, h2, h3, h4 {
+	margin: 10px 0;
+}
+
+h1 {
+	font-size: 20px;
+}
+
+h2 {
+	font-size: 18px;
+}
+
+h3 {
+	font-size: 16px;
+}
+
+h4 {
+	font-size: 14px;
+}
+
+p {
+	font-size: 14px;
+	line-height: 18px;
+	margin: 10px 0;
+}
+
+a {
+	text-decoration: none;
+	color: #288597;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul, ol {
+	margin: 0 40px;
+	padding: 0;
+}
+
+li {
+	font-size: 14px;
+	line-height: 18px;
+}
+
+img {
+	border: 0;
+}
+
+/* Clearfix --> */
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+} /* <-- Clearfix */
+
+
+/* --------------------------------------
+	=General Layout 
+---------------------------------------*/
+#wrapper {
+	width: 100%;
+	background: #EFEFEF;
+	min-height: 100%;
+}
+
+#container {
+	background-color: transparent;
+	width: 80%;
+	margin: auto;
+}
+
+.content img {
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+    -khtml-border-radius: 15px;
+	border-radius: 15px;
+	box-shadow: 1px 1px 5px #fff;
+}
+
+#full-width-container {
+	width: 100%;
+}
+
+#left-column {
+	width: 65%;
+	padding: 0 5%;
+	float: left;
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+
+#right-sidebar {
+	width: 25%;
+	float: right;
+	clear: none;
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+
+
+/* --------------------------------------
+	=Content
+-------------------------------------- */
+.post {
+	clear: both;
+	margin-bottom: 40px;
+}
+
+.post-title {
+	font-size: 28px;
+	padding: 5px 0 5px 0;
+}
+
+.post-metadata a {
+	color: #404040;
+}
+
+.post hr {
+	margin: 10px 0 5px 0px;
+	clear: both;
+	background-color: #288597;
+	color: #288597;
+	border: 0;
+	height: 1px;
+}
+
+.blog-home-thumbnail {
+	float: left;
+	margin: 0 15px 10px 0;
+	border: 8px solid #fff;
+	box-shadow: 0px 0px 10px #ccc;
+}
+
+.alignright {
+	float: right;
+}
+
+.alignleft, .alignnone {
+	float: left;
+	margin: 0 20px 20px 0;
+}
+
+.aligncenter {
+	text-align: center;
+}
+
+.read-more-button {
+	float: right;
+	height: 20px;
+	padding: 10px 10px 5px 10px;
+	margin: 0 10px 0 0;
+	font-weight: bold;
+	border: 1px solid #288597;
+	color: #fff;
+	background-color: #67C4DD;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#67C4DD), to(#288597));
+	background-image: -webkit-linear-gradient(top, #67C4DD, #288597);
+	background-image: -moz-linear-gradient(top, #67C4DD, #288597);
+	background-image: -ms-linear-gradient(top, #67C4DD, #288597);
+	background-image: -o-linear-gradient(top, #67C4DD, #288597);
+	background-image: linear-gradient(top, #67C4DD, #288597);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#67C4DD, endColorstr=#288597);
+}
+
+.read-more-button:hover {
+	text-decoration: none;
+	background-color: #288597;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#288597), to(#67C4DD));
+	background-image: -webkit-linear-gradient(top, #288597, #67C4DD);
+	background-image: -moz-linear-gradient(top, #288597, #67C4DD);
+	background-image: -ms-linear-gradient(top, #288597, #67C4DD);
+	background-image: -o-linear-gradient(top, #288597, #67C4DD);
+	background-image: linear-gradient(top, #288597, #67C4DD);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#288597, endColorstr=#67C4DD);
+}
+
+.post-category {
+	clear: left;
+}
+
+/* --------------------------------------
+	=Header 
+---------------------------------------*/
+#header {
+	width: 100%;
+	background-color: #EFEFEF;
+	color: #404040;
+	margin: 0;
+	padding: 0;
+}
+
+#header a {
+	color: #404040;
+}
+
+#header a:hover {
+	text-decoration: none;
+}
+
+#logo {
+	margin: 20px;
+	height: 40px;
+}
+
+#social-icons {
+	float: right;
+	margin: 20px 75px 0 0;
+}
+
+#social-icons img {
+	width: 24px;
+	height: 24px;
+	margin: 0 0 0 10px;
+}
+
+#feature-image-container {
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	text-align: center;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	
+}
+
+
+/* --------------------------------------
+	=Main Menu 
+---------------------------------------*/
+
+/* Global */
+#main-menu-small-container {
+	width: 200px;
+	margin: 80px auto 20px auto;
+	display: none;
+}
+
+#main-menu-small {
+	text-align: center;
+	width: 200px;
+}
+
+#main-menu {
+	width: 100%;
+	background-color: transparent;
+	display: block;
+	position: relative;
+	padding: 0;
+	margin: 50px 0 0 0;
+}
+ 
+.main-menu {
+	list-style: none;
+	float: right;
+	margin-right: 75px;
+	padding: 0;
+}
+
+.main-menu li {
+	float: left;
+	position: relative;
+	min-width: 60px;
+}
+
+#main-menu a {
+	display: block;
+	text-decoration :none;
+	color: #404040;
+	font-size: 13px; 
+	font-weight: bold;
+	padding: 10px;
+}
+
+.main-menu ul li:last-child {
+	border: none;
+}
+
+.sub-menu {
+	padding: 0;
+	margin: 0;
+}
+
+/* Level 1 */	
+.main-menu ul {
+	position: absolute;
+	z-index: 99999;
+	list-style-type: none;
+	margin: 0;
+	display: none;
+	background: #fff;
+	border: 1px solid #ccc;
+}
+
+/* Sub-Menus */	
+.main-menu ul li a, .main-menu ul ul li a {
+	width: 130px;
+	padding: 10px;	
+}
+
+.main-menu ul li {
+	border-bottom: 1px solid #ccc;
+}
+
+#main-menu ul ul li a {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.main-menu ul ul {
+	left: 100%;
+	top: 0;
+}
+
+/* Hover Control */
+#main-menu li a:hover {
+	color: #288597;
+}
+
+#main-menu ul ul li a:hover {
+	background: #efefef;
+	color: #404040;
+}
+ 
+.main-menu li:hover > ul {
+	display: none;
+}
+
+.sub-menu li:hover > ul { 
+	display: none; /* prevents a second sub-menu from showing */
+}
+
+#main-menu-parent_hover a {
+	color: #288597; /* connected to hover-control.js */
+}
+
+#main-menu-parent_hover ul li a {
+	color: #404040;
+}
+
+/* --------------------------------------
+	=Widgets
+---------------------------------------*/
+.widget {
+	width: 100%;
+	padding: 20px;
+}
+
+.widget-title {
+	color: #404040;
+}
+
+.widget ul {
+	margin: 0;
+}
+
+.widget ul li {
+	line-height: 16px;
+	font-size: 14px;
+	padding: 12px 0;
+	border-bottom: 1px dashed #ccc;
+	list-style: none;
+}
+
+.widget ul li:last-child {
+	border: 0;
+}
+
+.widget input {
+	clear: both;
+}
+
+/* Front Page */
+#front-widget-container {
+
+}
+
+.front-widget {
+	width: 30%;
+	float: left;
+	margin: 20px 1.5%;
+}
+
+.front-widget ul {
+	margin: 0;
+}
+
+.front-widget p {
+	font-size: 14px;
+	line-height: 16px;
+}
+
+.front-widget img {
+	width: 100px;
+	float: left;
+	margin: 0 10px 0 0;
+	padding: 8px;
+	border: 5px solid #fff;
+	box-shadow: 1px 1px 5px #ccc;
+	clear: both;
+}
+
+.front-widget ul li {
+	line-height: 16px;
+	font-size: 14px;
+	padding: 12px 0;
+	border-bottom: 1px dashed #ccc;
+	list-style: none;
+}
+
+.front-widget ul li:last-child {
+	border: none;
+}
+
+/* Social Widget */
+.social-link {
+	height: 32px;
+	display: block;
+	font-size: 14px;
+	margin: 20px 0 0 0;
+}
+
+.social-link img {
+	width: 32px;
+	border: 0;
+	padding: 0;
+}
+
+.social-widget-text {
+	float: left;
+	margin: 8px 0 0 0;
+}
+
+.social-link:hover > span {
+	text-decoration: underline;
+}
+
+/* ---------------------------------------
+	=Footer
+---------------------------------------*/
+#footer {
+	width: 100%;
+	clear: both;
+	position: relative;
+	min-height: 75px;
+	color: #fff;
+	padding-top: 20px;
+	text-shadow: #404040 1px 1px 3px;
+}
+
+#footer {
+	background-color: #288597;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#288597), to(#67C4DD));
+	background-image: -webkit-linear-gradient(top, #288597, #67C4DD);
+	background-image: -moz-linear-gradient(top, #288597, #67C4DD);
+	background-image: -ms-linear-gradient(top, #288597, #67C4DD);
+	background-image: -o-linear-gradient(top, #288597, #67C4DD);
+	background-image: linear-gradient(top, #288597, #67C4DD);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#288597, endColorstr=#67C4DD);
+}
+
+#footer a {
+	color: #fff;
+	text-decoration: underline;	
+}
+
+#copyright {
+	float: left;
+	margin-left: 20px;
+	clear: both;
+	font-size: 11px;
+}
+
+#theme-designer {
+	float: right;
+	margin-right: 20px;
+	font-size: 11px;
+}
+
+/* --------------------------------------- 
+	=Footer Menu
+--------------------------------------- */
+#footer-menu {
+	float: left;
+	padding: 10px;
+}
+
+#menu-footer {
+	margin: 0;
+}
+
+.footer-menu ul {
+	list-style-type: none;
+}
+
+.footer-menu li:last-child {
+	border: none;
+}
+
+.footer-menu li {
+	display: inline;
+	padding: 0px 10px;
+	border-right: 1px solid #fff;
+}
+
+#footer-menu div ul li a {
+	text-decoration: none;
+	font-size: 11px;
+}
+
+#footer-menu div ul li a:hover {
+	text-decoration: underline;
+}
+
+.footer-menu ul ul, .footer-menu ul ul ul {
+	display: none; /* hides sub-menus */
+}
+
+/* ---------------------------------------
+	=Responsive Design
+---------------------------------------*/
+@media screen and (max-width : 768px) {
+	
+	#social-icons {
+		margin: 20px auto;
+		text-align: center;
+		float: none;
+	}
+	
+	#logo {
+		margin: 20px auto;
+		text-align: center;
+		clear: both;
+	}
+	
+	#main-menu-small-container {
+		display: block;
+	}
+	
+	#main-menu {
+		display: none;
+	}
+	
+	.front-widget {
+		width: 100%;
+	}
+}

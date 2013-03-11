@@ -1,0 +1,1 @@
+<div id="front-widget-container"><?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Home Widget')) {} ?></div>

@@ -1,0 +1,1 @@
+<div id="right-sidebar"><?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('Right Sidebar')) {} ?></div>
