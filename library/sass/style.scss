@@ -17,6 +17,7 @@ TABLE OF CONTENTS
 =WIDGET AREAS --> specific widget styling is in library/widgets/widgets.css
 	-Global
 	-Footer
+	-Front Page
 =FOOTER
 =RESPONSIVE DESIGN
 
@@ -75,6 +76,8 @@ $error: #CC0000;
   }
 }
 
+/*  -Elements
+----------------------*/
 * {
   padding: 0;
   margin: 0;
@@ -88,6 +91,7 @@ body {
   margin: 0;
   padding: 0;
   color: lighten($primary, 20%);
+  background: lighten($primary, 90%);
 }
 
 h1, h2, h3, h4 {
@@ -139,7 +143,8 @@ img {
   border: 0;
 }
 
-/* Clearfix --> */
+/*  -Clearfix
+----------------------*/
 .clearfix:after {
   content: ".";
   display: block;
@@ -159,11 +164,10 @@ html[xmlns] .clearfix {
  
 * html .clearfix {
   height: 1%;
-} /* <-- Clearfix */
-
+}
 
 /* --------------------------------------
-  =General Layout 
+  =GENERAL LAYOUT
 ---------------------------------------*/
 #wrapper {
   width: 100%;
@@ -203,7 +207,7 @@ html[xmlns] .clearfix {
 
 
 /* --------------------------------------
-  =Content
+  =CONTENT
 -------------------------------------- */
 .post {
   clear: both;
@@ -253,7 +257,7 @@ html[xmlns] .clearfix {
 }
 
 /* --------------------------------------
-  =Header 
+  =HEADER
 ---------------------------------------*/
 #header {
   width: 100%;
@@ -275,15 +279,20 @@ html[xmlns] .clearfix {
   height: 40px;
 }
 
-#social-icons {
-  float: right;
-  margin: 20px 75px 0 0;
-}
-
-#social-icons img {
-  width: 24px;
-  height: 24px;
-  margin: 0 0 0 10px;
+#social-icons-container {
+  width: 95%;
+  background: $accent-1;
+  padding: 0 5% 0 0;
+  img {
+    float: right;
+    width: 24px;
+    height: 24px;
+    padding: 10px;
+    margin: 0 0 0 10px;
+    &:hover {
+      background: lighten($accent-1, 20%);
+    }
+  }
 }
 
 #feature-image-container {
@@ -398,8 +407,11 @@ html[xmlns] .clearfix {
 }
 
 /* --------------------------------------
-  =Widgets
+  =WIDGET AREAS
 ---------------------------------------*/
+
+/*  -Global
+------------------*/
 .widget {
   width: 100%;
   padding: 20px;
@@ -429,11 +441,64 @@ html[xmlns] .clearfix {
   clear: both;
 }
 
-/* Front Page */
-#front-widget-container {
-
+/*  -Footer
+------------------*/
+#footer-sidebar-container {
+  width: 90%;
+  margin: 0 0 -2px 0;
+  clear: both;
+  position: relative;
+  padding: 0 5% 10px 5%;
+  font-size: 11px;
+  color: lighten($primary, 90%);
+  background: lighten($accent-1, 20%);
+  @include shadow(1px, -1px, 5px, lighten($primary, 60%));
 }
 
+.footer-widget {
+  width: 30%;
+  float: left;
+  margin: 10px 1.5%;
+  h2 {
+    font-size: 18px;
+    margin: 15px 0;
+  }
+  ul {
+    margin: 0;
+  }
+  p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+  img {
+    width: 100px;
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 8px;
+    border: 5px solid lighten($primary, 40%);
+    clear: both;
+  }
+  .info-tile-img {
+    background: lighten($primary, 80%);
+  }
+  ul li {
+    line-height: 16px;
+    font-size: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed lighten($primary, 90%);
+    list-style: none;
+  }
+  a {
+    color: lighten($primary, 90%);
+    text-shadow: 1px 1px $primary;
+  }
+  ul li:last-child {
+    border: none;
+  }
+}
+
+/*  -Front Page
+------------------*/
 .front-widget {
   width: 30%;
   float: left;
@@ -505,7 +570,7 @@ html[xmlns] .clearfix {
   color: #fff;
   padding-top: 20px;
   text-shadow: lighten($primary, 20%) 1px 1px 3px;
-  @include gradient($accent-1, lighten($accent-1, 20%) );
+  background: $accent-1;
   a {
     color: #fff;
     text-decoration: underline; 
@@ -518,14 +583,14 @@ html[xmlns] .clearfix {
 
 #copyright {
   float: left;
-  margin-left: 20px;
+  margin: 10px 0 0 20px;
   clear: both;
   font-size: 11px;
 }
 
 #theme-designer {
   float: right;
-  margin-right: 20px;
+  margin: 10px 20px 0 0;
   font-size: 11px;
 }
 

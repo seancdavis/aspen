@@ -2,6 +2,8 @@
  
 /* Load Necessary PHP Files
 -------------------------------------------------------------------------------- */
+add_filter( 'show_admin_bar', '__return_false' );
+
 add_action( 'rocktree_init', 'rocktree_load_functions' );
 
 function rocktree_load_functions() {
@@ -11,21 +13,26 @@ function rocktree_load_functions() {
 		 
 	// admin
 	require_once( RT_LIBRARY_DIR . '/admin/theme-options.php' );
+	require_once( RT_LIBRARY_DIR . '/admin/page-meta.php' );
+	require_once( RT_LIBRARY_DIR . '/admin/theme-update-checker.php' );
 	
 	// content
 	require_once( RT_LIBRARY_DIR . '/content/content.php' );
 	require_once( RT_LIBRARY_DIR . '/content/sidebars.php' );
+	require_once( RT_LIBRARY_DIR . '/content/styles.php' );
+	require_once( RT_LIBRARY_DIR . '/content/social-media.php' );
 	
 	// plugins
-	require_once( RT_LIBRARY_DIR . '/plugins/features.php' );
-	require_once( RT_LIBRARY_DIR . '/plugins/feature-options.php' );
-	require_once( RT_LIBRARY_DIR . '/plugins/feature-meta.php' );
-	require_once( RT_LIBRARY_DIR . '/plugins/display-feature.php' );
-	require_once( RT_LIBRARY_DIR . '/plugins/feature-order.php' );	
+	require_once( RT_LIBRARY_DIR . '/plugins/features/features.php' ); // all other feature functions are called from features.php
+	require_once( RT_LIBRARY_DIR . '/plugins/moon-rock-contact-form/moon-rock-contact-form.php' );
+	
+	// shortcodes
+	require_once( RT_LIBRARY_DIR . '/shortcodes/shortcodes.php' );
 	
 	// widgets
 	require_once( RT_LIBRARY_DIR . '/widgets/info-tile.php' );
 	require_once( RT_LIBRARY_DIR . '/widgets/social-links.php' );
+	require_once( RT_LIBRARY_DIR . '/widgets/twitter-feed.php' );
 	
 }
 
@@ -72,38 +79,26 @@ do_action( 'rocktree_init' );
 
 // WP Built-In Hooks --->
 
-/* Scripts  & Stylea
+/* Scripts  & Styles
 -------------------------------------------------------------------------------- */
-	
-// Script that controls the feature slider
-// NOTE: Only loads on front page.	
-add_action('wp_enqueue_scripts', 'load_feature_script');	
-function load_feature_script() {
-	if( is_front_page() ) { 
-		wp_enqueue_script( 'feature-slider', get_template_directory_uri() . '/library/js/feature-slider.js', array('jquery') );
-		wp_enqueue_style( 'feature-slider', get_template_directory_uri() . '/library/css/features.css' ); 
-	}
-}
-
 // Animation of main menu
 add_action( 'wp_enqueue_scripts', 'load_main_menu_scripts' );	
 function load_main_menu_scripts() {
-	wp_enqueue_script('hover-control', get_template_directory_uri() . '/library/js/hover-control.js',array('jquery') );
+	wp_enqueue_script('footer', get_template_directory_uri() . '/library/js/footer.js',array('jquery') ); // footer styling finally seems to be working --> kill after testing
 	wp_enqueue_script('main-menu', get_template_directory_uri() . '/library/js/main-menu.js',array('jquery') );
+	wp_enqueue_script('shortcodes', get_template_directory_uri() . '/library/js/shortcodes.js',array('jquery') );
+	wp_enqueue_script( 'jquery-validate', 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js', array('jquery') );
 }
-	
-// Admin scripts. These only run when on admin site.
-// Currently these are only used for the feature plugin.
-add_action( 'admin_enqueue_scripts', 'load_custom_wp_admin_style' );	
-function load_custom_wp_admin_style() {
-	wp_enqueue_style( 'farbtastic' );
-	wp_enqueue_script( 'farbtastic' );
-	wp_enqueue_script( 'jquery-ui', 'http://code.jquery.com/ui/1.9.2/jquery-ui.js', array('jquery') );
-	wp_enqueue_script( 'drag-drop', get_template_directory_uri() . '/library/js/drag-drop.js', array('jquery','jquery-ui') );
-	wp_enqueue_script( 'farbtastic-feature-meta', get_template_directory_uri() . '/library/js/farbtastic-toggle.js', array('jquery', 'farbtastic') );	
-	wp_enqueue_style( 'feature-order', get_template_directory_uri() . '/library/css/feature-order.css' );	
-}	
 
+// Admin scripts. These only run when on admin site.
+if( isset($_GET['page']) && $_GET['page'] == 'rt_theme_options' ) add_action( 'admin_enqueue_scripts', 'rt_load_admin_scripts' );	
+function rt_load_admin_scripts() {
+	wp_enqueue_script('media-upload');
+	wp_enqueue_script('thickbox');
+	wp_enqueue_style('thickbox');
+	wp_enqueue_script( 'theme-options', get_template_directory_uri() . '/library/admin/theme-options.js', array('jquery','media-upload','thickbox') );
+	wp_enqueue_style( 'theme-options', get_template_directory_uri() . '/library/admin/theme-options.css' );	
+}
 
 /* Widgets 
 -------------------------------------------------------------------------------- */
@@ -112,35 +107,13 @@ add_action( 'widgets_init', 'load_widgets' );
 function load_widgets() {
 	register_widget( 'Info_Tile' );
 	register_widget( 'Social_Links' );
+	register_widget( 'Twitter_Feed' );
 }
 
-	
-/* Length of the_excerpt
--------------------------------------------------------------------------------- */
-remove_filter('get_the_excerpt', 'wp_trim_excerpt');
-add_filter('get_the_excerpt', 'custom_trim_excerpt');
-
-function custom_trim_excerpt($text) {
-		
-		// THIS NUMBER CONTROLS LENGTH OF EXCERPT
-		$new_excerpt_length = 100;
-		
-		// Registers new length of excerpt
-		global $post;
-		if ( '' == $text ) {
-		$text = get_the_content('');
-		$text = apply_filters('the_content', $text);
-		$text = str_replace(']]>', ']]>', $text);
-		$text = strip_tags($text);
-		$excerpt_length = $new_excerpt_length;
-		$words = explode(' ', $text, $excerpt_length + 1);
-			if (count($words) > $excerpt_length) {
-				array_pop($words);
-				array_push($words, '...');
-				$text = implode(' ', $words);
-			}
-		}		
-		return $text;
-}
+//Initialize the update checker
+$example_update_checker = new ThemeUpdateChecker(
+    'joshuatree',
+    'http://wp-themes.rocktreedesign.com/joshuatree/update-control.json'
+);
 
 ?>

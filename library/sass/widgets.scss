@@ -1,52 +1,6 @@
 /* _widgets.scss */
 
 /* --------------------------------------
-	=FRONT
----------------------------------------*/
-#front-widget-container {
-	clear: both;
-	width: 90%;
-	margin: auto;
-}
-
-.front-widget {
-	width: 30%;
-	float: left;
-	margin: 20px 1.5%;
-}
-
-.front-widget ul {
-	margin: 0;
-}
-
-.front-widget p {
-	font-size: 14px;
-	line-height: 16px;
-}
-
-.front-widget img {
-	width: 100px;
-	float: left;
-	margin: 0 10px 0 0;
-	padding: 8px;
-	border: 5px solid #fff;
-	box-shadow: 1px 1px 5px #ccc;
-	clear: both;
-}
-
-.front-widget ul li {
-	line-height: 16px;
-	font-size: 14px;
-	padding: 12px 0;
-	border-bottom: 1px dashed #ccc;
-	list-style: none;
-}
-
-.front-widget ul li:last-child {
-	border: none;
-}
-
-/* --------------------------------------
 	=SOCIAL
 ---------------------------------------*/
 .social-link {
@@ -82,13 +36,13 @@
 		margin-bottom: 9px;
 	}
 	a {
-		color: lighten($primary, 50%);
+		color: lighten($primary, 90%);
 	}
 	span {
-		color: lighten($primary, 60%);
+		color: lighten($primary, 90%);
 		text-decoration: none;
 		a {
-			color: lighten($primary, 50%);
+			color: lighten($primary, 90%);
 		}
 	}
 }

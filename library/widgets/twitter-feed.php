@@ -32,7 +32,7 @@ class Twitter_Feed extends WP_Widget {
 		if ( $handle ) {
 			
 			?>
-			<img id="twitter-feed-icon" src="<?php echo get_template_directory_uri() . '/images/social-media/twitter-dark-grey.png'; ?>">
+			<img id="twitter-feed-icon" src="<?php echo get_template_directory_uri() . '/images/social-media/twitter-white.png'; ?>">
 			<h2 id="twitter-feed-title"><a href="http://twitter.com/<?php echo $handle; ?>" target="_blank">@<?php echo $handle; ?></a></h2>			
 			<ul id="twitter_update_list"></ul>
 			
