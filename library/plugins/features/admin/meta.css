@@ -1,0 +1,59 @@
+h4.feature-section-title {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	margin: 20px 0 0 0;
+	padding: 0;
+	color: #999;
+}
+
+h4.feature-sub-title {
+	font-size: 12px;
+	color: #000;
+	margin: 20px 0 10px 0;
+	padding: 0;
+	color: #999;
+	font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+hr {
+	border: 0;
+	height: 1px;
+	background-color: #999;
+}
+
+.show-existing-content-list {
+	text-decoration: underline;
+}
+
+.show-existing-content-list:hover {
+	cursor: pointer;
+}
+
+.existing-content-list {
+	height: 150px;
+	overflow: scroll;
+	display: none;
+	background: #fff;
+}
+
+.existing-content-item {
+	padding: 3px;
+	margin: 0;
+	border-bottom: 1px dashed #EFEFEF;
+}
+
+.existing-content-item:hover {
+	cursor: pointer;
+	background: #E6E6E6;
+}
+
+.existing-content-item-selected {
+	background: #E6E6E6;
+	font-weight: bold;
+}
+
+.existing-content-post-type {
+	float: right;
+	margin: 2px 5px;
+	color: #CCCCCC;
+}

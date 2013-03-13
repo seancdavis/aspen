@@ -1,0 +1,596 @@
+/* _style.scss */
+
+/*
+
+TABLE OF CONTENTS
+---------------------------------------
+=GLOBAL
+	-Sass Control
+	-Elements
+	-Clearfix
+=GENERAL LAYOUT
+=CONTENT
+=HEADER
+=MENUS
+	-Main
+	-Footer
+=WIDGET AREAS --> specific widget styling is in library/widgets/widgets.css
+	-Global
+	-Footer
+=FOOTER
+=RESPONSIVE DESIGN
+
+/* --------------------------------------
+	=GLOBAL 
+---------------------------------------*/
+
+/*	-Sass Control
+----------------------*/
+/* Colors */
+$primary: #000000;
+$accent-1: #288597;
+$shadow: #CCCCCC;
+$success: #009b77;
+$error: #CC0000;
+
+@mixin gradient( $bottom-color: $primary, $top-color: lighten($primary, 25%) ) {
+	background-color: $top-color;
+	background-image: -webkit-gradient(linear, left top, left bottom, from($top-color), to($bottom-color) );
+	background-image: -webkit-linear-gradient(top, $top-color, $bottom-color);
+	background-image: -moz-linear-gradient(top, $top-color, $bottom-color);
+	background-image: -ms-linear-gradient(top, $top-color, $bottom-color);
+	background-image: -o-linear-gradient(top, $top-color, $bottom-color);
+	background-image: linear-gradient(top, $top-color, $bottom-color);
+	filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr="+$top-color+", endColorstr="+$bottom-color+", GradientType=0)";
+}
+
+@mixin shadow( $x-val: 3px, $y-val: 3px, $blur: 5px, $color: $shadow ) {
+	-moz-box-shadow: $x-val $y-val $blur $color; /* Firefox */  
+	-webkit-box-shadow: $x-val $y-val $blur $color; /* Safari, Chrome */  
+	box-shadow: $x-val $y-val $blur $color; /* CSS3 */
+}
+
+@mixin opacity( $opacity-val: 50 ) {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + $opacity-val + ")"; /* IE 8 */
+  -moz-opacity: $opacity-val / 100; /* firefox */
+  -khtml-opacity: $opacity-val / 100; /* safari 1.x */
+  opacity: $opacity-val / 100; /* modern browsers */
+}
+
+@mixin corners( $radius: 15px ) {
+  -moz-border-radius: $radius; /* Firefox */  
+  -webkit-border-radius: $radius; /* Safari, Chrome */  
+  border-radius: $radius; /* CSS3 */ 
+}
+
+@mixin button( $color: lighten($primary, 20%) ) {
+  @include gradient( $color, lighten($color, 20%) );
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  font-size: 16px;
+  &:hover {
+    cursor: pointer;
+    @include gradient( $color, darken($color, 20%) );
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  line-height: 1em;
+}
+
+body {
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 12px;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  color: lighten($primary, 20%);
+}
+
+h1, h2, h3, h4 {
+  margin: 10px 0;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 14px;
+}
+
+p {
+  font-size: 14px;
+  line-height: 18px;
+  margin: 10px 0;
+}
+
+a {
+  text-decoration: none;
+  color: $accent-1;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul, ol {
+  margin: 0 40px;
+  padding: 0;
+}
+
+li {
+  font-size: 14px;
+  line-height: 18px;
+}
+
+img {
+  border: 0;
+}
+
+/* Clearfix --> */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+ 
+.clearfix {
+  display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+  display: block;
+}
+ 
+* html .clearfix {
+  height: 1%;
+} /* <-- Clearfix */
+
+
+/* --------------------------------------
+  =General Layout 
+---------------------------------------*/
+#wrapper {
+  width: 100%;
+  min-height: 100%;
+}
+
+#container {
+  background-color: transparent;
+  width: 80%;
+  margin: auto;
+}
+
+.content img {
+  @include corners(15px);
+  @include shadow(1px, 1px, 5px, #fff);
+}
+
+#full-width-container {
+  width: 100%;
+}
+
+#left-column {
+  width: 65%;
+  padding: 0 5%;
+  float: left;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+#right-sidebar {
+  width: 25%;
+  float: right;
+  clear: none;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+
+
+/* --------------------------------------
+  =Content
+-------------------------------------- */
+.post {
+  clear: both;
+  margin-bottom: 40px;
+}
+
+.post-title {
+  font-size: 28px;
+  padding: 5px 0 5px 0;
+}
+
+.post-metadata a {
+  color: lighten($primary, 20%);
+}
+
+.post hr {
+  margin: 10px 0 5px 0px;
+  clear: both;
+  background-color: #288597;
+  color: #288597;
+  border: 0;
+  height: 1px;
+}
+
+.blog-home-thumbnail {
+  float: left;
+  margin: 0 15px 10px 0;
+  border: 8px solid #fff;
+  box-shadow: 0px 0px 10px #ccc;
+}
+
+.alignright {
+  float: right;
+}
+
+.alignleft, .alignnone {
+  float: left;
+  margin: 0 20px 20px 0;
+}
+
+.aligncenter {
+  text-align: center;
+}
+
+.post-category {
+  clear: left;
+}
+
+/* --------------------------------------
+  =Header 
+---------------------------------------*/
+#header {
+  width: 100%;
+  color: lighten($primary, 20%);
+  margin: 0;
+  padding: 0;
+}
+
+#header a {
+  color: lighten($primary, 20%);
+}
+
+#header a:hover {
+  text-decoration: none;
+}
+
+#logo {
+  margin: 20px;
+  height: 40px;
+}
+
+#social-icons {
+  float: right;
+  margin: 20px 75px 0 0;
+}
+
+#social-icons img {
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 10px;
+}
+
+#feature-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  text-align: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+}
+
+
+/* --------------------------------------
+  =Main Menu 
+---------------------------------------*/
+
+/* Global */
+#main-menu-small-container {
+  width: 200px;
+  margin: 80px auto 20px auto;
+  display: none;
+}
+
+#main-menu-small {
+  text-align: center;
+  width: 200px;
+}
+
+#main-menu {
+  width: 100%;
+  background-color: transparent;
+  display: block;
+  position: relative;
+  padding: 0;
+  margin: 50px 0 0 0;
+  a {
+    display: block;
+    text-decoration :none;
+    color: lighten($primary, 20%);
+    font-size: 13px; 
+    font-weight: bold;
+    padding: 10px;
+  }
+  ul ul li a {
+    font-size: 12px;
+    font-weight: normal;
+    &:hover {
+      background: #efefef;
+      color: lighten($primary, 20%) !important;
+    }
+  }
+  li a:hover {
+    color: #288597 !important;
+  }
+}
+ 
+.main-menu {
+  list-style: none;
+  float: right;
+  margin-right: 75px;
+  padding: 0;
+  ul {
+    position: absolute;
+    z-index: 99999;
+    list-style-type: none;
+    margin: 0;
+    display: none;
+    background: #fff;
+    border: 1px solid #ccc;
+    ul {
+      left: 100%;
+      top: 0;
+    }
+    li {
+      border-bottom: 1px solid #ccc;
+      a {
+        width: 130px;
+        padding: 10px;  
+      }
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+  li {
+    float: left;
+    position: relative;
+    min-width: 60px;
+    &:hover > ul {
+      display: none;
+    }
+  }
+}
+
+.sub-menu {
+  padding: 0;
+  margin: 0;
+  li:hover > ul { 
+    display: none; /* prevents a second sub-menu from showing */
+  }
+}
+
+.current-menu-item {
+  a {
+    color: $accent-1 !important;
+  }
+  ul li a {
+    color: lighten($primary, 20%) !important;
+  }
+}
+
+/* --------------------------------------
+  =Widgets
+---------------------------------------*/
+.widget {
+  width: 100%;
+  padding: 20px;
+}
+
+.widget-title {
+  color: lighten($primary, 20%);
+}
+
+.widget ul {
+  margin: 0;
+}
+
+.widget ul li {
+  line-height: 16px;
+  font-size: 14px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #ccc;
+  list-style: none;
+}
+
+.widget ul li:last-child {
+  border: 0;
+}
+
+.widget input {
+  clear: both;
+}
+
+/* Front Page */
+#front-widget-container {
+
+}
+
+.front-widget {
+  width: 30%;
+  float: left;
+  margin: 20px 1.5%;
+}
+
+.front-widget ul {
+  margin: 0;
+}
+
+.front-widget p {
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.front-widget img {
+  width: 100px;
+  float: left;
+  margin: 0 10px 0 0;
+  padding: 8px;
+  border: 5px solid #fff;
+  box-shadow: 1px 1px 5px #ccc;
+  clear: both;
+}
+
+.front-widget ul li {
+  line-height: 16px;
+  font-size: 14px;
+  padding: 12px 0;
+  border-bottom: 1px dashed #ccc;
+  list-style: none;
+}
+
+.front-widget ul li:last-child {
+  border: none;
+}
+
+/* Social Widget */
+.social-link {
+  height: 32px;
+  display: block;
+  font-size: 14px;
+  margin: 20px 0 0 0;
+}
+
+.social-link img {
+  width: 32px;
+  border: 0;
+  padding: 0;
+}
+
+.social-widget-text {
+  float: left;
+  margin: 8px 0 0 0;
+}
+
+.social-link:hover > span {
+  text-decoration: underline;
+}
+
+/* ---------------------------------------
+  =Footer
+---------------------------------------*/
+#footer {
+  width: 100%;
+  clear: both;
+  position: relative;
+  min-height: 75px;
+  color: #fff;
+  padding-top: 20px;
+  text-shadow: lighten($primary, 20%) 1px 1px 3px;
+  @include gradient($accent-1, lighten($accent-1, 20%) );
+  a {
+    color: #fff;
+    text-decoration: underline; 
+  }
+  .current-menu-item a {
+    text-decoration: underline !important;
+    color: lighten($primary, 100%) !important;
+  }
+}
+
+#copyright {
+  float: left;
+  margin-left: 20px;
+  clear: both;
+  font-size: 11px;
+}
+
+#theme-designer {
+  float: right;
+  margin-right: 20px;
+  font-size: 11px;
+}
+
+/* --------------------------------------- 
+  =Footer Menu
+--------------------------------------- */
+#footer-menu {
+  float: left;
+  padding: 10px;
+}
+
+#menu-footer {
+  margin: 0;
+}
+
+.footer-menu {
+  ul {
+    list-style-type: none;
+  }
+  li {
+    display: inline;
+    padding: 0px 10px;
+    border-right: 1px solid #fff;
+    font-size: 11px;
+    a {
+      text-decoration: none !important;
+      &:hover {
+        text-decoration: underline !important;
+      }
+    }
+    &:last-child {
+      border: none;
+    }
+  }
+  ul ul, ul ul ul {
+    display: none; /* hides sub-menus */
+  }
+}
+
+/* ---------------------------------------
+  =Responsive Design
+---------------------------------------*/
+@media screen and (max-width : 768px) {
+  
+  #social-icons {
+    margin: 20px auto;
+    text-align: center;
+    float: none;
+  }
+  
+  #logo {
+    margin: 20px auto;
+    text-align: center;
+    clear: both;
+  }
+  
+  #main-menu-small-container {
+    display: block;
+  }
+  
+  #main-menu {
+    display: none;
+  }
+  
+  .front-widget {
+    width: 100%;
+  }
+}

@@ -1,0 +1,47 @@
+.feature-settings-tab {	
+	padding: 10px;
+	margin: 10px 0 0 -2px;
+	float: left;
+	background-color: #CCCCCC;
+	color: #000;
+}
+
+.feature-settings-tab:hover {
+	background-color: #EFEFEF;
+	color: #000;
+}
+
+.feature-settings-tab-selected {
+	border: none;
+	color: #000;
+	background-color: #EFEFEF;
+}
+
+.feature-settings-tab:hover {
+	cursor: pointer;
+}
+
+.feature-settings-section {	
+	clear: both;
+	margin: 40px 20px 0 -2px;
+	padding: 20px;
+	display: none;
+	background-color: #EFEFEF;
+}
+
+.feature-settings-section-selected {
+	display: block;
+}
+
+.call-to-action {
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  border: none;
+  margin: 10px 0;
+  float: left;
+}
+
+.call-to-action:hover {
+	cursor: pointer;
+}

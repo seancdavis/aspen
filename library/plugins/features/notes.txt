@@ -1,0 +1,70 @@
+To DO
+-------------------
+- Meta Boxes
+	√ Call to action section only shows if it is selected in the settings
+	√ Ideally, call to action and URL share the same field
+	√ Background color should only show if color/gradient are selected
+	- Add gradient option for background color
+	- Make building meta boxes dynamic
+	√ Remove slide directions for now
+
+- Display Features
+	√ Break up display function so it is easy to get through by using reusable and messy functions outside the display function
+	√ Add functionality for all settings and meta
+	√ Tie back into one JS and one CSS file for displaying on site
+	√ Get content sliding separate from background when appropriate setting is selected
+
+- Settings
+	√ Create separate feature_type option and remove the slide_group option
+	- Clean up files - it doesn't work well with the way it is organized in three files right now
+	√ Add arguments array to display functions
+	- Add helper text where necessary
+	- Add icon/image helpers where necessary
+	√ Add tab/menu functionality
+	
+- Re-Order Features
+	- user jQuery UI for drag and drop functionality
+	- If easy enough with jQuery UI, consider adding this as a tab to the settings page
+	
+
+Feature Settings
+-------------------
+
+- Container 
+	- (slider_width) Slider width (Full vs. Standard)
+	- (bkg_type) Background (Solid color, gradient, I'll choose the color for each slider)
+	- (bkg_color) 
+
+- Content
+	- Text 
+		- (text_color) color
+	- Links
+		- (linked_content) what should be linked (call to action button, entire feature, I'll create my own links)
+		- (link_new_window) Default - open in a new window?
+	- Call to action button 
+		- (button_visible) activation (show/hide)
+		- (button_bkg_color) background color (all other needed styles are based on color choice)
+		- (button_text_color) text color
+
+- Sliding Controls
+	- Preview indicators
+		- (counter_type) type (circles, numbers)
+		- (inactive_counter_color) background color inactive
+		- (active_counter_color) bkg color active
+		- (hover_counter_color) bkg color hover
+		- (inactive_counter_text_color) text color (if necessary)
+		- (active_counter_text_color)
+		- (hover_counter_text_color)
+	- Arrow toggles
+		- (arrows_visible) show/hide
+		- (arrows_bkg_type) show background color behind?
+		- (arrows_bkg_color)
+
+
+Feature Meta Boxes
+-------------------
+_disable_feature
+_linked_content
+_link_new_window
+_bkg_color
+_button_text

@@ -1,19 +1,27 @@
 <?php
 
-/* The CORE functions
+/* The CORE functions (this page needs to be commented)
 ------------------------------------------------------------------------ */
-add_action( 'build_content', 'core_content_builder' );
+add_action( 'build_content', 'core_content_builder', 10, 2 );
 
-function core_content_builder($layout) {
-		
-	get_header();
+function core_content_builder($page) {
 	
+	get_header();	
 	if( is_front_page() ) {
 		get_sidebar( 'front' );
 	}
-	else{
-	 
-		echo '<div id="container">';
+	else { ?>
+		
+		<div id="container" style="margin:<?php	
+			if( has_post_thumbnail() ) echo '0 auto';
+			else if( has_social_icons() ) echo '100px auto'; 
+			else echo '150px auto'; 
+		?>"><?php
+		
+		if( is_single() || is_page() && has_post_thumbnail() ) do_action( 'feature_image' );
+		
+		 
+		
 		
 		$post = $posts[0]; // Hack. Set $post so that the_date() works.
 		/* If this is a category archive */ 
@@ -45,18 +53,24 @@ function core_content_builder($layout) {
 			echo '<h2>Blog Archives</h2>';
 		}		
 		
-		// builds correct content containers based on page template	
-		if( $layout == 'right-sidebar' ) {
+		// builds correct content containers based on page layout
+		global $post;
+		$page_layout = get_post_meta($post->ID, '_page_layout', true);	
+		if( $page_layout == '' ) $page_layout = 'Full-Width';
+		switch($page_layout) {
+			case 'Right Sidebar':
 			echo '<div id="left-column">';
-			do_action( 'build_loop' );
+			do_action( 'build_loop', $page, $plugin );
 			echo '</div>';
 			get_sidebar();
-		}
-		else {
+			break;
+			
+			case 'Full-Width':
 			echo '<div id="full-width-column">';
-			do_action( 'build_loop' );
+			do_action( 'build_loop', $page, $plugin );
 			echo '</div>';
-		}		
+			break;
+		} 	
 	
 		echo '</div>';
 	
@@ -68,39 +82,44 @@ function core_content_builder($layout) {
 
 /* The LOOP
 ------------------------------------------------------------------------ */
-add_action( 'build_loop', 'the_loop');
+add_action( 'build_loop', 'the_loop', 10, 2);
 
-function the_loop() {
+function the_loop($page, $plugin) {
+	
+	// Please note: there are lines in here specific to the wp-client plugin. They won't affect the core template.
 	
 	if(have_posts()) :
 			
 		while(have_posts()) : the_post(); ?>
 			 
-			<div class="post">            
-				<h2 class="post-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				
+			<div class="post">
+				<?php if( is_home() || is_category() || is_archive() ) : ?>
+					<?php if( $plugin != 'wp-client' ) : ?>            		
+						<a href="<?php the_permalink(); ?>">
+							<h2 class="post-title"><?php the_title(); ?></h2>
+						</a>
+					<?php endif; ?>
+				<?php endif; ?>
+				<?php if( $page == 'clientspage' ) : ?><h2 class="post-title"><?php the_title(); ?></h2><?php endif; ?>
+                
 				<?php if( is_home() || is_single() ) : ?>
+					<?php if( $plugin != 'wp-client' ) : ?>
                 
                     <div class="post-metadata">
-                        <span class="post-author">
-                            <a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>"><?php the_author_meta('display_name'); ?></a>
-                        </span>
-                        <?php _e('&#183;'); ?>
-                        <span class="post-date">
-                            <?php echo get_the_date('n.j.y'); ?>
-                        </span>
-                        <?php _e('&#183;'); ?>
-                        <span class="post-comments">
-                            <?php comments_popup_link('No Comments', '1 Comment', '% Comments');?>
-                        </span>
-                        <?php _e('&#183;'); ?>
-                        <span class="edit-post">					
-                            <?php edit_post_link('Edit'); ?>
-                        </span>
+                    
+                        <?php if( rt_get_chk_option( 'rt_blog_author' ) == 1 ) : ?><span class="post-author"><a href="<?php echo get_author_posts_url(get_the_author_meta( 'ID' )); ?>"><?php the_author_meta('display_name'); ?></a></span>&nbsp;&nbsp;&nbsp;<?php endif; ?>
+                        
+                        <?php if( rt_get_chk_option( 'rt_blog_date' ) == 1 ) : ?><span class="post-date"><?php echo get_the_date('n.j.y'); ?></span>&nbsp;&nbsp;&nbsp;<?php endif; ?>
+                        
+                        <?php if( rt_get_chk_option( 'rt_blog_comments' ) == 1 ) : ?><span class="post-comments"><?php comments_popup_link('No Comments', '1 Comment', '% Comments');?></span>&nbsp;&nbsp;&nbsp;<?php endif; ?>
+                        
+                        <span class="edit-post"><?php edit_post_link('Edit'); ?></span>
+                        
                     </div>
                     
                     <hr class="post-separator">
-                    
+					
+                    <?php endif; ?>
 				<?php endif; ?>
                  
                     <div class="content">   
@@ -108,23 +127,25 @@ function the_loop() {
                         <?php 
 							if( is_home() ) {
 								the_post_thumbnail( 'blog-home-thumbnail', array('class' => 'blog-home-thumbnail'));
-								the_excerpt();
+								$blog_view = rt_get_option( 'rt_blog_view' );
+								if( $blog_view == 'the_excerpt' ) the_excerpt();
+								else the_content();
 							}
 							elseif( is_page() || is_single() ) {
 								the_content();
-								if( is_page() ) { edit_post_link('Edit Page'); }
+								//if( is_page() ) { edit_post_link('Edit Page'); } this is getting in the way of some shortcodes. It'd be nice to put it with an icon maybe near the top of the page.
 							}
 						?>
                         
                     </div>
 				
-                <?php if( is_home() ) : ?>
+                <?php if( is_home() ) :
          
-                    <a class="read-more-button" href="<?php echo get_permalink(); ?>">Read More...</a> 
+                    //echo '<a class="read-more-button" href="' . get_permalink() . '">Read More...</a>'; ?>
                     
-                    <p class="post-category">
-                        <?php _e('Posted in&#58;'); ?> <?php the_category(', ') ?>                
-                    </p>    
+                    <?php if( rt_get_chk_option( 'rt_blog_category' ) == 1 ) : ?><span class="post-category"><?php _e('Posted in&#58;'); ?><?php the_category(', ') ?></span>&nbsp;&nbsp;&nbsp;<?php endif; ?>
+                    
+                    <?php if( rt_get_chk_option( 'rt_blog_tags' ) == 1 ) : ?><span class="post-tags"><?php the_tags('Tagged with: ', ', '); ?></span><?php endif; ?>                   
                     
 				<?php endif; ?>
 				
@@ -144,29 +165,29 @@ function the_loop() {
 	
 }
 
+/* Settings for the_excerpt()
+-------------------------------------------------------------------------------- */
+function new_excerpt_length($length) {
+	return rt_get_option( 'rt_blog_excerpt_length' );
+}
+add_filter('excerpt_length', 'new_excerpt_length');
+
+function new_excerpt_more($more) {
+	global $post;
+	return '&nbsp;&nbsp;<a href="' . get_permalink($post->ID) . '" >' . rt_get_option( 'rt_blog_readmore_text' ) . '</a>';
+}
+add_filter('excerpt_more', 'new_excerpt_more');
+
 /* Feature Image
 ------------------------------------------------------------------------ */
 add_action( 'feature_image', 'get_feature_image' );
 
 function get_feature_image() {
 	
-	$url = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) );
+	$url = wp_get_attachment_url( get_post_thumbnail_id( get_the_ID() ) ); ?>
 	
-	echo '<div id="feature-image-container" style="background-image: url(' . $url . ' );" ></div>';    
+	<div id="feature-img-container"><img src="<?php echo $url; ?>" class="feature-img"></div><?php  
 
-}
-
-/* Social Icons
------------------------------------------------------------------------- */
-add_action( 'rt_display_social_icons', 'rt_display_social_icons' );
-
-function rt_display_social_icons() {
-	
-	if( rt_get_option('rt_facebook') != '' ) { _e( '<a href="' . rt_get_option('rt_facebook') . '" target="_blank"><img src="' . get_template_directory_uri() . '/images/facebook-24.png" /></a>' ); }
-				if( rt_get_option('rt_twitter') != '' ) { _e( '<a href="' . rt_get_option('rt_twitter') . '" target="_blank"><img src="' . get_template_directory_uri() . '/images/twitter-24.png" /></a>' ); }
-				if( rt_get_option('rt_linkedin') != '' ) { _e( '<a href="' . rt_get_option('rt_linkedin') . '" target="_blank"><img src="' . get_template_directory_uri() . '/images/linkedin-24.png" /></a>' ); }
-				if( rt_get_option('rt_pinterest') != '' ) { _e( '<a href="' . rt_get_option('rt_pinterest') . '" target="_blank"><img src="' . get_template_directory_uri() . '/images/pinterest-24.png" /></a>' ); }
-	
 }
 
 /* displays main menu as a dropdown list --- click directs you to that page.

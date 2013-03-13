@@ -36,7 +36,7 @@ class Info_Tile extends WP_Widget {
 
 		/* Display name from widget settings if one was input. */
 		if ( $img )
-			echo '<img src="' . $img . '">';
+			echo '<img class="info-tile-img" src="' . $img . '">';
 
 		/* If show sex was selected, display the user's sex. */
 		if ( $text )
