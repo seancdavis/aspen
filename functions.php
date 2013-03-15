@@ -109,7 +109,7 @@ function load_widgets() {
 	register_widget( 'Twitter_Feed' );
 }
 
-//Initialize the update checker
+//Initialize the update checker - NOT SURE THIS IS WORKING PROPERLY
 $example_update_checker = new ThemeUpdateChecker(
     'aspen',
     'http://wp-themes.rocktreedesign.com/aspen/update-control.json'
