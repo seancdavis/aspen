@@ -350,7 +350,7 @@ html[xmlns] .clearfix {
   padding: 0 5% 10px 5%;
   font-size: 11px;
   color: #e6e6e6;
-  background: #53bdd2;
+  background: #33a9bf;
   -moz-box-shadow: 1px -1px 5px #999999;
   /* Firefox */
   -webkit-box-shadow: 1px -1px 5px #999999;
@@ -453,11 +453,12 @@ html[xmlns] .clearfix {
   min-height: 75px;
   color: #fff;
   padding-top: 20px;
-  text-shadow: #333333 1px 1px 3px;
   background: #288597; }
   #footer a {
     color: #fff;
-    text-decoration: underline; }
+    text-shadow: #333333 1px 1px 3px; }
+    #footer a:hover {
+      text-decoration: underline; }
   #footer .current-menu-item a {
     text-decoration: underline !important;
     color: white !important; }
@@ -467,11 +468,15 @@ html[xmlns] .clearfix {
   margin: 10px 0 0 20px;
   clear: both;
   font-size: 11px; }
+  #copyright a {
+    text-decoration: underline; }
 
 #theme-designer {
   float: right;
   margin: 10px 20px 0 0;
   font-size: 11px; }
+  #theme-designer a {
+    text-decoration: underline; }
 
 /* --------------------------------------- 
   =Footer Menu
@@ -554,12 +559,12 @@ html[xmlns] .clearfix {
     padding-bottom: 7px;
     margin-bottom: 9px; }
   #twitter_update_list a {
-    color: #e6e6e6; }
+    color: white; }
   #twitter_update_list span {
-    color: #e6e6e6;
+    color: white;
     text-decoration: none; }
     #twitter_update_list span a {
-      color: #e6e6e6; }
+      color: white; }
 
 #twitter-feed-title a {
   text-decoration: none; }

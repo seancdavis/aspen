@@ -451,7 +451,7 @@ html[xmlns] .clearfix {
   padding: 0 5% 10px 5%;
   font-size: 11px;
   color: lighten($primary, 90%);
-  background: lighten($accent-1, 20%);
+  background: lighten($accent-1, 10%);
   @include shadow(1px, -1px, 5px, lighten($primary, 60%));
 }
 
@@ -569,11 +569,13 @@ html[xmlns] .clearfix {
   min-height: 75px;
   color: #fff;
   padding-top: 20px;
-  text-shadow: lighten($primary, 20%) 1px 1px 3px;
   background: $accent-1;
   a {
     color: #fff;
-    text-decoration: underline; 
+    text-shadow: lighten($primary, 20%) 1px 1px 3px;
+    &:hover {
+      text-decoration: underline;
+    } 
   }
   .current-menu-item a {
     text-decoration: underline !important;
@@ -586,12 +588,18 @@ html[xmlns] .clearfix {
   margin: 10px 0 0 20px;
   clear: both;
   font-size: 11px;
+  a {
+    text-decoration: underline;
+  }
 }
 
 #theme-designer {
   float: right;
   margin: 10px 20px 0 0;
   font-size: 11px;
+  a {
+    text-decoration: underline;
+  }
 }
 
 /* --------------------------------------- 
