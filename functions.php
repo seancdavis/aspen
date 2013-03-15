@@ -111,8 +111,8 @@ function load_widgets() {
 
 //Initialize the update checker
 $example_update_checker = new ThemeUpdateChecker(
-    'joshuatree',
-    'http://wp-themes.rocktreedesign.com/joshuatree/update-control.json'
+    'aspen',
+    'http://wp-themes.rocktreedesign.com/aspen/update-control.json'
 );
 
 ?>
