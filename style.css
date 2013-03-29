@@ -50,7 +50,7 @@ body {
   margin: 0;
   padding: 0;
   color: #333333;
-  background: #e6e6e6; }
+  background: #f2f2f2; }
 
 h1, h2, h3, h4 {
   margin: 10px 0; }
@@ -216,14 +216,15 @@ html[xmlns] .clearfix {
   width: 95%;
   background: #288597;
   padding: 0 5% 0 0; }
-  #social-icons-container img {
+  #social-icons-container a.rt-social-icon {
     float: right;
-    width: 24px;
-    height: 24px;
     padding: 10px;
     margin: 0 0 0 10px; }
-    #social-icons-container img:hover {
+    #social-icons-container a.rt-social-icon:hover {
       background: #53bdd2; }
+  #social-icons-container img {
+    width: 24px;
+    height: 24px; }
 
 #feature-image-container {
   width: 100%;
@@ -343,11 +344,10 @@ html[xmlns] .clearfix {
 /*  -Footer
 ------------------*/
 #footer-sidebar-container {
-  width: 90%;
   margin: 0 0 -2px 0;
   clear: both;
   position: relative;
-  padding: 0 5% 10px 5%;
+  padding: 10px;
   font-size: 11px;
   color: #e6e6e6;
   background: #33a9bf;

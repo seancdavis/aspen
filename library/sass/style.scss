@@ -91,7 +91,7 @@ body {
   margin: 0;
   padding: 0;
   color: lighten($primary, 20%);
-  background: lighten($primary, 90%);
+  background: lighten($primary, 95%);
 }
 
 h1, h2, h3, h4 {
@@ -283,15 +283,17 @@ html[xmlns] .clearfix {
   width: 95%;
   background: $accent-1;
   padding: 0 5% 0 0;
-  img {
+  a.rt-social-icon {
     float: right;
-    width: 24px;
-    height: 24px;
     padding: 10px;
     margin: 0 0 0 10px;
     &:hover {
       background: lighten($accent-1, 20%);
     }
+  }
+  img {
+    width: 24px;
+    height: 24px;  
   }
 }
 
@@ -444,11 +446,10 @@ html[xmlns] .clearfix {
 /*  -Footer
 ------------------*/
 #footer-sidebar-container {
-  width: 90%;
   margin: 0 0 -2px 0;
   clear: both;
   position: relative;
-  padding: 0 5% 10px 5%;
+  padding: 10px;
   font-size: 11px;
   color: lighten($primary, 90%);
   background: lighten($accent-1, 10%);

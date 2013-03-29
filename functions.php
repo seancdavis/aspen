@@ -85,8 +85,11 @@ add_action( 'wp_enqueue_scripts', 'load_main_menu_scripts' );
 function load_main_menu_scripts() {
 	wp_enqueue_script('footer', get_template_directory_uri() . '/library/js/footer.js',array('jquery') ); // footer styling finally seems to be working --> kill after testing
 	wp_enqueue_script('main-menu', get_template_directory_uri() . '/library/js/main-menu.js',array('jquery') );
-	wp_enqueue_script('shortcodes', get_template_directory_uri() . '/library/js/shortcodes.js',array('jquery') );
 	wp_enqueue_script( 'jquery-validate', 'http://jzaefferer.github.com/jquery-validation/jquery.validate.js', array('jquery') );
+	wp_enqueue_script('rt-jquery-ui-core', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js', array('jquery') );
+	wp_enqueue_style( 'jquery-ui-smoothness', 'http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css' );
+	wp_enqueue_style('rt-tooltips', get_template_directory_uri() . '/library/css/tooltips.css', array('jquery-ui-smoothness') );
+	wp_enqueue_script('social-icons', get_template_directory_uri() . '/library/js/social-icons.js',array('jquery', 'rt-jquery-ui-core') );	
 }
 
 // Admin scripts. These only run when on admin site.

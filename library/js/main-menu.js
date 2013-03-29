@@ -1,5 +1,4 @@
 jQuery(document).ready(function($){
-	
 	// adds hover effects to WordPress menus
 	var hover_num = 0;
 	var control_num = 0;
